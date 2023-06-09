@@ -3,7 +3,7 @@
     include_once("templates/header.php");
 
 ?>
-
+<!-- Principal -->
 
 <?php
 

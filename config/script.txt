@@ -5,3 +5,5 @@ create table contato (
     telefone varchar(55) not null,
     descricao text not null,
 );
+
+// criando tabela
