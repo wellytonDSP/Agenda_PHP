@@ -21,5 +21,15 @@ include_once("config/connection.php");
     <title>Agenda</title>
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div>
+                <a class="nav-link active" href="<?=$BASE_URL?>index.php" >Inicio</a>
+                <a class="nav-link active" href="<?=$BASE_URL?>create.php" >Adicionar Contato</a>
+                <a class="nav-link active" href="<?=$BASE_URL?>edit.php" >Gerenciar Contatos</a>
+            </div>
+        </nav>
+    </header>
     
+
     

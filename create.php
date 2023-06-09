@@ -4,7 +4,7 @@
 
 ?>
 <!-- Principal -->
-    <h1>Principal</h1>
+    <h1>Criar contato</h1>
 <?php
 
     include_once("templates/footer.php");
