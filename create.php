@@ -1,11 +1,34 @@
 <?php
-
     include_once("templates/header.php");
-
 ?>
-<!-- Principal -->
-    <h1>Criar contato</h1>
-<?php
+<!-- Adicionar contatos -->
+    <div class="container">
+        <h1 class="main-title">ADICIONAR CONTATOS</h1>
+            <form action="<?=$BASE_URL?>config/process.php" method="POST">
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" name="name" placeholder="Digite o seu nome" required>
+            </div>
+            <div class="form-group">    
+                <label>Idade</label>
+                <input type="text" name="age" placeholder="Digite sua idade" required>
+            </div>
+            <div class="form-group">    
+                <label>Endereço</label>
+                <input type="text" name="adress" placeholder="Digite o endereço" required>
+            </div>    
+            <div class="form-group">    
+                <label>Telefone</label>
+                <input type="phone" name="phone" placeholder="Digite o telefone" required>
+            </div>    
+            <div class="form-group">    
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Digite o email" required>
+            </div>
+            <button type="button">Adicionar</button>
+            </form>    
+    </div>
 
-    include_once("templates/footer.php");
+<?php
+    include_once("templates/footer.php"); 
 ?>

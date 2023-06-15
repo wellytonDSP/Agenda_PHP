@@ -1,7 +1,7 @@
 <?php
 
 include_once("config/url.php");
-include_once("config/connection.php");
+include_once("config/process.php");
 
 ?>
 
@@ -22,8 +22,9 @@ include_once("config/connection.php");
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg">
-            <div>
+        <!-- Barra de navegação -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark align-middle justify-content-center">
+            <div class="navbar-nav">
                 <a class="nav-link active" href="<?=$BASE_URL?>index.php" >Inicio</a>
                 <a class="nav-link active" href="<?=$BASE_URL?>create.php" >Adicionar Contato</a>
                 <a class="nav-link active" href="<?=$BASE_URL?>edit.php" >Gerenciar Contatos</a>
