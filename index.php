@@ -19,6 +19,14 @@
                     <th scope="col">email</th>
                 </tr>    
             </thead>
+            <!-- Corpo da tabela -->
+            <tbody>
+                <?php foreach($contacts as $contact):?>
+                    <tr>
+                        <td scope="row" class="col-id"><?= $contact["id"] ?></td>
+                    </tr>
+                <?php endforeach; ?> 
+            </tbody>
         </table>
     </div>
 

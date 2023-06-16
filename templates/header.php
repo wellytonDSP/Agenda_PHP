@@ -27,7 +27,6 @@ include_once("config/process.php");
             <div class="navbar-nav">
                 <a class="nav-link active" href="<?=$BASE_URL?>index.php" >Inicio</a>
                 <a class="nav-link active" href="<?=$BASE_URL?>create.php" >Adicionar Contato</a>
-                <a class="nav-link active" href="<?=$BASE_URL?>edit.php" >Gerenciar Contatos</a>
             </div>
         </nav>
     </header>
