@@ -21,9 +21,14 @@
             </thead>
             <!-- Corpo da tabela -->
             <tbody>
-                <?php foreach($contacts as $contact):?>
+                <?php foreach($contacts as $contact): ?>
                     <tr>
-                        <td scope="row" class="col-id"><?= $contact["id"] ?></td>
+                        <td scope="row" class="col-id"><?= $contact["contato_id"] ?></td>
+                        <td scope="row" ><?= $contact["nome"] ?></td>
+                        <td scope="row" ><?= $contact["idade"] ?></td>
+                        <td scope="row" ><?= $contact["endereco"] ?></td>
+                        <td scope="row" ><?= $contact["telefone"] ?></td>
+                        <td scope="row" ><?= $contact["email"] ?></td>
                     </tr>
                 <?php endforeach; ?> 
             </tbody>
