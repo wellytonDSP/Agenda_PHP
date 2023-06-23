@@ -31,36 +31,84 @@ if(!empty($info)){
         try{
             $stmt->execute();
             $_SESSION["msg"] = "Contato criado com sucesso!";
-            header("Location:" . $BASE_URL . "../index.php");
-            exit();
         }catch(Exception $e){
             $error = $e->getMessage();
             echo "ERRO: $error";
         }
-        
-    }
-}else{
-    
-    $id;
 
-    if(!empty($_GET)){
-        $id = $_GET["contato_id"];
-    }
-
-    if(!empty($id)){
         
-        $query = "SELECT * FROM contato WHERE contato_id = :id";
+    }else if ($info["type"] === "delete"){
+        $id = $info["contato_id"];
+
+        $query = "DELETE FROM contato WHERE contato_id = :id";
 
         $stmt = $conn->prepare($query);
 
-        $stmt->bindParam(":id",$id);
+        $stmt->bindParam (":id", $id);
+
+
+        try{
+            $stmt -> execute();
+            $_SESSION["msg"] = "Contato removido com sucesso!";
+        }catch(Exception $e){
+            $error = $e->getMessage();
+            echo "ERRO: $erro"; 
+        }
+    }else if ($info["type"] === "edit"){
+        
+        $name = $info["name"]; 
+        $age = $info["age"];
+        $address = $info["address"];
+        $phone = $info["phone"]; 
+        $email = $info["email"];
+        $id = $info["contato_id"];
+
+        $query = "UPDATE contatcts SET name = :name, age = :age, address = :address, phone = :phone, email = :email where contato_id = :id_contato";
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->bindParam (":name", $name);
+        $stmt->bindParam (":age", $age);
+        $stmt->bindParam (":address", $address);
+        $stmt->bindParam (":phone", $phone);
+        $stmt->bindParam (":email", $email);
+        $stmt->bindParam (":id_contato", $id);
+
+        try{
+            $stmt -> execute();
+            $_SESSION["msg"] = "Contato editado com sucesso!";
+        }catch(Exception $e){
+            $error = $e->getMessage();
+            echo "ERRO: $erro"; 
+        }
+    }
+    header("Location:" . $BASE_URL . "../index.php");
+}else{
+
+    $id;
+
+    if(!empty($_GET)) {
+        
+        $id = $_GET["id"];
+        print_r($id);
+      }
+
+    // Retorna dado de um post específico
+    if(!empty($id)) { 
+
+        $query = "SELECT * FROM contato WHERE contato_id = :id";
+
+        $stmt = $conn->prepare($query);
+        
+        $stmt->bindParam(":id", $id);
 
         $stmt->execute();
-        
+
         $contact = $stmt->fetch();
-    }else{
-        $contacts = [];
-        
+
+    // Retorna todos os contatos
+    } else {
+
         $query = "SELECT * FROM contato";
 
         $stmt = $conn->prepare($query);
@@ -69,7 +117,4 @@ if(!empty($info)){
 
         $contacts = $stmt->fetchAll();
     }
-
 }
-
-$conn = null;
