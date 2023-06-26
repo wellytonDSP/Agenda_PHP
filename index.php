@@ -23,23 +23,25 @@
                         <th scope="col">Endereço</th>
                         <th scope="col">Telefone</th>
                         <th scope="col">email</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>    
                 </thead>
                 <!-- Corpo da tabela -->
                 <tbody>
                     <?php foreach($contacts as $contact): ?>
                         <tr>
-                            <td scope="row" class="col-id"><?= $contact["contato_id"] ?></td>
-                            <td scope="row" ><?= $contact["nome"] ?></td>
-                            <td scope="row" ><?= $contact["idade"] ?></td>
-                            <td scope="row" ><?= $contact["endereco"] ?></td>
-                            <td scope="row" ><?= $contact["telefone"] ?></td>
+                            <td scope="row" class="col-id"><?= $contact["id"] ?></td>
+                            <td scope="row" ><?= $contact["name"] ?></td>
+                            <td scope="row" ><?= $contact["age"] ?></td>
+                            <td scope="row" ><?= $contact["address"] ?></td>
+                            <td scope="row" ><?= $contact["phone"] ?></td>
                             <td scope="row" ><?= $contact["email"] ?></td>
                             <td class="actions">
-                                <a href="<?= $BASE_URL?>edit.php?contato_id<?=$contact["contato_id"]?>" ><i class="fas fa-edit edit-icon"></i></a>
+                            <a href="<?= $BASE_URL ?>edit.php?id=<?= $contact["id"] ?>"><i class="far fa-edit edit-icon"></i></a>
                                 <form class="delete-form" action="<?= $BASE_URL?>config/process.php" method="POST">
                                     <input type="hidden" name="type" value="delete">
-                                    <input type="hidden" name="contato_id" value="<?= $contact['contato_id'] ?>">
+                                    <input type="hidden" name="id" value="<?= $contact["id"]?>">
                                     <button type = "submit"><i class="fa-solid fa-circle-xmark" style="color: #ce2222;"></i></button>
                                 </form>
                             </td>

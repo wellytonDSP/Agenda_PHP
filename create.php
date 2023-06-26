@@ -1,14 +1,15 @@
 <?php
     include_once("templates/header.php");
 ?>
-<!-- Adicionar contatos -->
-    <div class="container">
-        <h1 id="main-title">ADICIONAR CONTATOS</h1>
-            <form class="form-inline" action="<?=$BASE_URL?>config/process.php" method="POST">
+<!-- Cria -->
+<div class="container">
+        <h1 id="main-title">ADICIONAR CONTATO</h1>
+            <form id="create-form" action="<?=$BASE_URL?>config/process.php" method="POST">
+            <input type="hidden" name="type" value="create">
                 <div class="row mb-3">
                     <div class="form-group col">
-                        <label>Nome</label>
-                        <input type="text" name="name" class="form-control" placeholder="Digite o seu nome" required>
+                        <label for="name">Nome</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Digite o seu nome" required>
                     </div>
                     <div class="form-group col">    
                         <label>Idade</label>
@@ -16,7 +17,7 @@
                     </div>
                 </div>    
                 <div class="row">
-                    <div class="form-group col">    
+                    <div class="form-group col">
                         <label>Endereço</label>
                         <input type="text" name="address" class="form-control" placeholder="Digite o endereço" required>
                     </div>    
@@ -29,12 +30,10 @@
                         <input type="email" name="email" class="form-control" placeholder="Digite o email" required>
                     </div>
                 </div>
-                
-                    <button type="submit" name="type"  value="create" class="btn btn-dark" >Adicionar</button>
-                
+                    <button type="submit" class="btn btn-dark" >Cadastrar</button>
             </form>
     </div>
-
 <?php
-    include_once("templates/footer.php"); 
+
+    include_once("templates/footer.php");
 ?>

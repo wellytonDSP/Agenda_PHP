@@ -11,6 +11,7 @@ $info = $_POST;
 
 
 if(!empty($info)){
+    //cria contato
     if($info["type"] === "create"){
         $name = $info["name"]; 
         $age = $info["age"];
@@ -18,7 +19,7 @@ if(!empty($info)){
         $phone = $info["phone"]; 
         $email = $info["email"];
 
-        $query = "INSERT INTO contato (nome,idade,endereco,telefone,email) VALUES (:name,:age,:address,:phone,:email)";
+        $query = "INSERT INTO contact (name,age,address,phone,email) VALUES (:name,:age,:address,:phone,:email)";
 
         $stmt = $conn->prepare($query);
 
@@ -36,11 +37,11 @@ if(!empty($info)){
             echo "ERRO: $error";
         }
 
-        
+    //Deleta contato
     }else if ($info["type"] === "delete"){
-        $id = $info["contato_id"];
+        $id = $info["id"];
 
-        $query = "DELETE FROM contato WHERE contato_id = :id";
+        $query = "DELETE FROM contact WHERE id = :id";
 
         $stmt = $conn->prepare($query);
 
@@ -54,16 +55,19 @@ if(!empty($info)){
             $error = $e->getMessage();
             echo "ERRO: $erro"; 
         }
+    //Edita contato
     }else if ($info["type"] === "edit"){
-        
+              
         $name = $info["name"]; 
         $age = $info["age"];
         $address = $info["address"];
         $phone = $info["phone"]; 
         $email = $info["email"];
-        $id = $info["contato_id"];
+        $id = $info["id"];
 
-        $query = "UPDATE contatcts SET name = :name, age = :age, address = :address, phone = :phone, email = :email where contato_id = :id_contato";
+        $query = "UPDATE contact 
+                  SET name = :name, age = :age, address = :address, phone = :phone, email = :email 
+                  where id = :id";
 
         $stmt = $conn->prepare($query);
 
@@ -72,49 +76,54 @@ if(!empty($info)){
         $stmt->bindParam (":address", $address);
         $stmt->bindParam (":phone", $phone);
         $stmt->bindParam (":email", $email);
-        $stmt->bindParam (":id_contato", $id);
+        $stmt->bindParam (":id", $id);
 
         try{
             $stmt -> execute();
-            $_SESSION["msg"] = "Contato editado com sucesso!";
+            $_SESSION["msg"] = "Contato atualizado com sucesso!";
         }catch(Exception $e){
             $error = $e->getMessage();
-            echo "ERRO: $erro"; 
+            echo "ERRO: $erro";
         }
     }
+    //direciona para a pagina inicial
     header("Location:" . $BASE_URL . "../index.php");
-}else{
-
+}else {
+    
     $id;
 
     if(!empty($_GET)) {
-        
-        $id = $_GET["id"];
-        print_r($id);
-      }
+      $id = $_GET["id"];
+    }
 
-    // Retorna dado de um post específico
-    if(!empty($id)) { 
+    // Retorna o dado de um contato
+    if(!empty($id)) {
 
-        $query = "SELECT * FROM contato WHERE contato_id = :id";
+      $query = "SELECT * FROM contact WHERE id = :id";
 
-        $stmt = $conn->prepare($query);
-        
-        $stmt->bindParam(":id", $id);
+      $stmt = $conn->prepare($query);
 
-        $stmt->execute();
+      $stmt->bindParam(":id", $id);
 
-        $contact = $stmt->fetch();
+      $stmt->execute();
 
-    // Retorna todos os contatos
+      $contact = $stmt->fetch();
+
     } else {
 
-        $query = "SELECT * FROM contato";
+      // Retorna todos os contatos
+      $contacts = [];
 
-        $stmt = $conn->prepare($query);
+      $query = "SELECT * FROM contact";
 
-        $stmt->execute();
+      $stmt = $conn->prepare($query);
 
-        $contacts = $stmt->fetchAll();
+      $stmt->execute();
+      
+      $contacts = $stmt->fetchAll();
+
     }
-}
+
+  }
+
+$conn = null;

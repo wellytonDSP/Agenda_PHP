@@ -1,7 +1,3 @@
-.navbar-brand img {
-    width: 50px;
-  }
-  
   #main-title {
     text-align: center;
     margin: 15px 0 30px;
@@ -9,13 +5,13 @@
   
   /* HOME */
   #contacts-table {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
   }
   
   #contacts-table thead {
     color: #FFF;
-    background-color: #007bff;
+    background-color: #212529;
   }
   
   #empty-list-text {
@@ -48,7 +44,7 @@
   }
   
   .edit-icon {
-    color: #007bff;
+    color: #212529;
   }
   
   .delete-form {
@@ -68,21 +64,8 @@
   /* ADD CONTACT */
   #create-form,
   #edit-form {
-    max-width: 500px;
+    max-width: 1000px;
     margin: 0 auto;
-  }
-  
-  #back-link-container {
-    display: block;
-    width: 500px;
-    margin: 30px auto 0;
-  }
-  
-  #back-link {
-    border: 1px solid #007bff;
-    color: #007bff;
-    border-radius: 4px;
-    padding: 5px;
   }
   
   #back-link:hover {
